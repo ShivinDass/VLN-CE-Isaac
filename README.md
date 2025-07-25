@@ -92,3 +92,19 @@ This project makes use of the following open-source codebases:
 
 ## License
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+
+```
+# terminal 1
+cd ~/Desktop/vlfm_habitat/vlfm
+conda activate vlfm
+./scripts/launch_gdino_servers.sh
+
+```
+
+```
+# terminal 2
+cd ~/Desktop/vlnce_isaac/VLN-CE-Isaac
+conda activate vlnce-isaac
+python scripts/demo_planner_with_obj_detection.py --task=go2_matterport_vision --history_length=9 --load_run=2024-09-25_23-22-02
+```
