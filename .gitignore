@@ -4,6 +4,7 @@ isaaclab_exts/omni.isaac.vlnce/assets
 *.egg-info
 *.mp4
 *.png
+*.pt
 __pycache__
 logs
 lockfiles

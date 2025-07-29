@@ -131,13 +131,12 @@ class VLNEnvWrapper:
     """Wrapper to configure an :class:`ManagerBasedRLEnv` instance to VLN environment."""
 
     def __init__(self, env: ManagerBasedRLEnv, 
-                 low_level_policy, task_name, 
-                 episode, max_length=10000, high_level_obs_key="camera_obs",
+                 low_level_policy, task_name, max_length=10000, high_level_obs_key="camera_obs",
                  measure_names=["PathLength", "DistanceToGoal", "Success", "SPL", "OracleNavigationError", "OracleSuccess"]
         ):
         self.env = env
         self.task_name = task_name
-        self.episode = episode
+        
         self.measure_names = measure_names
 
         self.env_step = 0
@@ -187,11 +186,6 @@ class VLNEnvWrapper:
             self.low_level_action = actions
 
         self.env_step, self.same_pos_count = 0, 0
-        
-        self.set_measures()
-        self.measure_manager.reset_measures()
-        measurements = self.measure_manager.get_measurements()
-        infos["measurements"] = measurements
 
         self.prev_pos = self.env.unwrapped.scene["robot"].data.root_pos_w[0].detach()
 
@@ -235,10 +229,6 @@ class VLNEnvWrapper:
         self.low_level_obs = low_level_obs
         obs = info["observations"][self.high_level_obs_key]
         self.env_step += 1
-
-        self.measure_manager.update_measures()
-        measurements = self.measure_manager.get_measurements()
-        info["measurements"] = measurements
 
         # Check if the robot has stayed in the same location for 1000 steps or env has reached max length
         same_pos = self.check_same_pos()

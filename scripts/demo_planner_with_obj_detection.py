@@ -101,8 +101,11 @@ if __name__ == "__main__":
     # from vlnce.agents.teleop_agent import TeleopAgent
     # agent = TeleopAgent(env, simulation_app, vis_detections=False)
 
-    from vlnce.agents.vlfm_agent import VLFMAgent
-    agent = VLFMAgent(env, simulation_app)
+    # from vlnce.agents.vlfm_agent import VLFMAgent
+    # agent = VLFMAgent(env, simulation_app)
+
+    from vlnce.agents.mem3d_agent import Mem3DAgent
+    agent = Mem3DAgent(env, simulation_app)
 
     agent.run_loop()
     # Close the simulator
